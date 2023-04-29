@@ -1,0 +1,189 @@
+:root {
+    --prim: #A43EAD;
+    --secu: #47AD95;
+    --tri: #FADF8C;
+    --d: #5AFAD4;
+    --a: #EE74FA;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    background-color: var(--prim);
+}
+
+/* REGISTRO DE NUMEROS */
+
+#number-history {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 20px;
+    background-color: var(--prim);
+}
+#number-history div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--a);
+    border-radius: 10px;
+    padding: 0px 20px;
+    height: 40px;
+}
+#number-history_style {
+    font-family: 'Bebas Neue';
+    font-weight: 400;
+    font-size: 36px;
+    padding: 5px;
+    margin: 0px;
+    color: black;
+    text-decoration: underline;
+}
+#number-history_style_green {
+    color: greenyellow;
+    font-family: 'Bebas Neue';
+    font-weight: 400;
+    font-size: 36px;
+    padding: 5px;
+    margin: 0px;
+}
+#number-history_style_yellow {
+    color: yellow;
+    font-family: 'Bebas Neue';
+    font-weight: 400;
+    font-size: 36px;
+    padding: 5px;
+    margin: 0px;
+}
+#number-history_style_white {
+    color: red;
+    font-family: 'Bebas Neue';
+    font-weight: 400;
+    font-size: 36px;
+    padding: 5px;
+    margin: 0px;
+}
+
+
+/* VISUALIZACIÓN DE RESULTADOS */
+
+#number-view {
+    background-color: var(--prim);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+#number-view div {
+    padding: 25px;
+    border-radius: 10px;
+    font-family: 'Bebas Neue';
+    font-size: 36px;
+    background-color: var(--a);
+    color: white;
+    margin-top: 50px;
+}
+#number-view div span {
+    animation: 1s floating ease-in-out infinite;
+}
+@keyframes floating {
+    0% {
+        position: relative;
+        bottom: 5px;
+    }
+    50% {
+        position: relative;
+        bottom: -5px;
+    }
+    100% {
+        position: relative;
+        bottom: 5px;
+    }
+}
+
+/* INPUT SECTION */
+
+#user {
+    background-color: var(--prim);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column-gap: 20px;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+}
+#user button {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--a);
+    font-family: 'Bebas Neue';
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--tri);
+    padding: 5px 0px 0px 0px;
+}
+#user div {
+    height: 50px;
+    display: grid;
+    grid-template-rows: 10px 40px;
+    border-radius: 10px;
+    font-family: 'Bebas Neue';
+    color: white;
+    font-size: 36px;
+}
+#user div div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+}
+
+/* KEYPAD */
+
+#number-pad {
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+    padding: 10px;
+    background-color: #A43EAD;
+}
+#number-pad button {
+    height: 50px;
+    border-radius: 10px;
+    background-color: var(--a);
+    border: none;
+    font-family: 'Bebas Neue';
+    font-size: 24px;
+    color: white;
+}
+#action-number {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px 20px;
+    column-gap: 10px;
+    background-color: var(--prim);
+}
+#action-number button {
+    background-color: var(--a);
+    border: none;
+    padding: 5px 0px;
+    border-radius: 10px;
+    color: white;
+}
+#name {
+    background-color: #A43EAD;
+    margin: 0px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Fira Code';
+}

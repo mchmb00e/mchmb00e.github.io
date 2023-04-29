@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note App | mchmb00e</title>
+    <link rel="shortcut icon" href="resources/sticky.svg" type="image/svg">
+    <meta name="author" content="mchmb00e">
+    <meta name="description" content="Note App Responsive">
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <nav>
+        <h1>Note App</h1>
+        <input type="text" placeholder="Buscar nota..." id="search">
+        <button onclick="newNote(true)" id="btn_newNote">Nueva nota</button>
+        <div class="category">
+            <div onclick="filterCategory('personal')"><span><i class="bi bi-person-fill"></i>Personal </span><span id="personal">0</span></div>
+            <div onclick="filterCategory('trabajo')"><span><i class="bi bi-buildings-fill"></i>Trabajo </span><span id="trabajo">0</span></div>
+            <div onclick="filterCategory('educacion')"><span><i class="bi bi-postcard-fill"></i>Educación </span><span id="educacion">0</span></div>
+        </div>
+        <div class="tag">
+            <button onclick="mainPost('c1')"></button>
+            <button onclick="mainPost('c2')"></button>
+            <button onclick="mainPost('c3')"></button>
+            <button onclick="mainPost('c4')"></button>
+            <button onclick="mainPost('c5')"></button>
+        </div>
+        <p id="test"></p>
+    </nav>
+    <main id="main">
+    </main>
+    <div class="noteAlert">
+        <div class="noteAlert-dark">
+            <div class="noteAlert-form">
+                <div class="noteAlert-form-exit">
+                    <i onclick="newNote(false)" class="bi bi-x"></i>
+                </div>
+                <div>
+                    <input type="text" id="createName" placeholder="Nombre de la nota">
+                    <textarea id="createDesc" placeholder="Escribe una descripción..."></textarea>
+                    <div>
+                        <select id="tagOption">
+                            <option value="c1" class="c1"><div></div>Color 1</option>
+                            <option value="c2" class="c2"><div></div>Color 2</option>
+                            <option value="c3" class="c3"><div></div>Color 3</option>
+                            <option value="c4" class="c4"><div></div>Color 4</option>
+                            <option value="c5" class="c5"><div></div>Color 5</option>
+                        </select>
+                    </div>
+                    <button onclick="create()">Crear nota</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
