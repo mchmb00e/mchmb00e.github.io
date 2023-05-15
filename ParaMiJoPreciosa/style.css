@@ -1,0 +1,117 @@
+body {
+    background-color: rgb(216, 107, 125);
+    color: white;
+    font-family: 'Fredoka';
+    font-size: 24px;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+}
+#start {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 99;
+}
+#firstMsg_div {
+    z-index: 98;
+    position: fixed;
+    top: 0px;
+    bottom:0px;
+    left: 0px;
+    right: 0px;
+    padding: 50px;
+    background-color: blueviolet;
+}
+#start button, #btn-1, #circleOpen {
+    animation: infinite 5s linear pulse;
+    width: 200px;
+    height: 75px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(216, 107, 125);
+}
+#start button p, #btn-1 p, #circleOpen p {
+    font-family: 'Fredoka';
+    font-weight: bold;
+    font-size: 32px;
+    color: white;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.0);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+@keyframes start_btn {
+    0% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-120%) translateX(-100%) rotate(35deg);
+    }
+}
+@keyframes start_div {
+    0% {
+        bottom: 0px;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+@keyframes to_right {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.grid-second {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-top: 100px;
+}
+.grid-second img {
+    width: 33%;
+    height: auto;
+    opacity: 0%;
+}
+@keyframes opacity {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+#circleOpen {
+    opacity: 0%;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+}

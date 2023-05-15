@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo linda <3 </title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="style.css">
+</head>
+
+<body >
+    <div id="start">
+        <button id="start-btn" onclick="startAction()">
+            <p>Comenzar</p>
+        </button>
+    </div>
+    <div id="firstMsg_div" onclick="statusGo(1)">
+        <p id="firstMsg"></p>
+    </div>
+    <main>
+        <h2>Lo más bonito que tengo <3</h2>
+        <p id="secondMsg"></p>
+        <div class="grid-second">
+            <img src="img1.jpg" id="img-1">
+            <img src="img2.jpg" id="img-2">
+            <img src="img3.jpg" id="img-3">
+        </div>
+        <a target="_blank" href="https://api.whatsapp.com/send/?phone=56933372677&text=Buenos+d%C3%ADas+mi+amor+%3C3&type=phone_number&app_absent=0">
+        <button id="circleOpen" onclick="whatsapp()"><p>Empezar el día</p></button>
+        </a>
+    </main>
+    <script src="main.js"></script>
+</body>
+
+</html>
