@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Numbers</title>
+</head>
+
+<body>
+
+    <div class="new-game-pop-up">
+        <h2 class="new-game-pop-up-title">¿Quieres iniciar una nueva partida?</h2>
+        <div class="new-game-pop-up-container-options">
+            <button class="new-game-option" onclick="newGame('accept')">Aceptar</button>
+            <button class="new-game-option" onclick="newGame('decline')">Rechazar</button>
+        </div>
+    </div>
+
+    <main class="main-screen">
+        <div class="main-top">
+            <div class="main-top-container">
+                <div class="attemps">Intentos: <span id="attemps-value"></span></div>
+                <div class="btn-container">
+                    <button onclick="newGame('pop-up')" id="new-game">
+                        <img src="svg/plus.svg" class="icon-new-game">Nueva partida
+                    </button>
+                </div>
+                <div class="numbers-container">
+                    <h2 class="numbers-container-title">Numbers</h2>
+                </div>
+                <div class="last-attemp-title-container">
+                    <h2 class="last-attemp-title">Último intento</h2>
+                </div>
+                <div class="last-attemp-value-container">
+                    <div class="last-attemp-value"></div>
+                    <div class="last-attemp-value"></div>
+                    <div class="last-attemp-value"></div>
+                    <div class="last-attemp-value"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-center">
+            <div class="user-input-box" onclick="touchBox(0)"></div>
+            <div class="user-input-box" onclick="touchBox(1)"></div>
+            <div class="user-input-box" onclick="touchBox(2)"></div>
+            <div class="user-input-box" onclick="touchBox(3)"></div>
+        </div>
+        <div class="main-bottom">
+            <div class="main-bottom-container">
+                <button class="key" onclick="key(1)">1</button>
+                <button class="key" onclick="key(2)">2</button>
+                <button class="key" onclick="key(3)">3</button>
+                <button class="key" onclick="key(4)">4</button>
+                <button class="key" onclick="key(5)">5</button>
+                <button class="key" onclick="key(6)">6</button>
+                <button class="key" onclick="key(7)">7</button>
+                <button class="key" onclick="key(8)">8</button>
+                <button class="key" onclick="key(9)">9</button>
+                <button class="key" onclick="key('reset')"><img src="svg/reset.svg"></button>
+                <button class="key" onclick="key('send')"><img src="svg/check.svg"></button>
+            </div>
+        </div>
+    </main>
+    <div class="win-screen">
+        <div class="win-top">
+            <h2 class="win-top-title">Numbers</h2>
+        </div>
+        <div class="win-center">
+            <p class="win-center-title">¡GANASTE!</p>
+            <div class="center">
+                <img class="win-center-img" src="svg/happy.svg">
+            </div>
+            <p class="win-center-attemps">Intentos realizados: <span id="win-center-attemps-value"></span></p>
+            <div class="win-center-container-values">
+                <div class="win-center-value"></div>
+                <div class="win-center-value"></div>
+                <div class="win-center-value"></div>
+                <div class="win-center-value"></div>
+            </div>
+        </div>
+        <div class="win-bottom">
+            <button class="new-game-win" onclick="newGame('force')">
+                <img src="svg/plus.svg">Nueva partida
+            </button>
+        </div>
+    </div>
+    <div class="loss-screen">
+        <div class="win-top">
+            <h2 class="win-top-title">Numbers</h2>
+        </div>
+        <div class="win-center">
+            <p class="win-center-title">¡PERDISTE!</p>
+            <div class="center">
+                <img class="win-center-img" src="svg/sad.svg">
+            </div>
+            <p class="win-center-attemps" style="margin-bottom: 20px;">Te has quedado sin intentos.<br>Los numeros correctos eran:</p>
+            <div class="win-center-container-values">
+                <div class="loss-center-value"></div>
+                <div class="loss-center-value"></div>
+                <div class="loss-center-value"></div>
+                <div class="loss-center-value"></div>
+            </div>
+        </div>
+        <div class="win-bottom">
+            <button class="new-game-win" onclick="newGame('force2')">
+                <img src="svg/plus.svg">Nueva partida
+            </button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
