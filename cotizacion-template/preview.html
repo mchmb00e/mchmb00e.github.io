@@ -14,18 +14,18 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: white;
+            background-color: white; 
             margin: 0;
-            padding: 0;
+            padding: 0; 
             color: var(--text-color);
             display: flex;
-            justify-content: center;
+            justify-content: center; 
         }
 
         #contenido-pdf {
             background: white;
-            width: 215.9mm;
-            min-height: 100vh;
+            width: 215.9mm; /* Ancho Carta */
+            min-height: 100vh; 
             padding: 15mm 20mm;
             box-sizing: border-box;
             position: relative;
@@ -51,6 +51,7 @@
         .detail-separator::before, .detail-separator::after { content: ''; flex: 1; border-bottom: 2px solid #999; }
         .detail-separator span { padding: 0 15px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
 
+        /* --- TABLA --- */
         table {
             width: 100%;
             border-spacing: 0;
@@ -59,26 +60,26 @@
             font-size: 12px;
         }
 
-        thead {
-            display: table-header-group;
-        }
-        
-        tr {
-            page-break-inside: avoid;
-        }
+        thead { display: table-header-group; }
+        tr { page-break-inside: avoid; }
 
         thead tr { background-color: var(--primary-color); color: white; height: 40px; }
         th { font-weight: 600; padding: 10px; text-align: center; }
-        th:nth-child(3) { text-align: left; padding-left: 20px; }
         
+        /* CAMBIO: Ahora la col 2 (Descripción) es la alineada a la izquierda */
+        th:nth-child(2) { text-align: left; padding-left: 20px; } 
+
         tbody tr { height: 35px; }
         td { padding: 8px 10px; color: #333; }
         
         tbody tr:nth-child(even) { background-color: var(--secondary-bg) !important; -webkit-print-color-adjust: exact; }
         tbody tr:nth-child(odd) { background-color: #fff !important; }
 
-        td:nth-child(1), td:nth-child(2), td:nth-child(4), td:nth-child(5) { text-align: center; }
-        td:nth-child(3) { text-align: left; padding-left: 20px; }
+        /* CAMBIO: Alineación de celdas */
+        /* Centro: #, Cantidad, Precio, Total */
+        td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5) { text-align: center; }
+        /* Izquierda: Descripción */
+        td:nth-child(2) { text-align: left; padding-left: 20px; }
 
         .totals-section { margin-top: 10px; font-size: 14px; line-height: 1.6; margin-left: 20px; page-break-inside: avoid; }
         .total-row { display: flex; gap: 5px; }
@@ -104,13 +105,8 @@
                 margin: 0; padding: 0;
             }
             .no-print { display: none !important; }
-
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-
-            @page {
-                size: letter;
-                margin: 1.5cm;
-            }
+            @page { size: letter; margin: 1.5cm; }
         }
     </style>
 </head>
@@ -155,8 +151,8 @@
             <thead>
                 <tr>
                     <th width="8%">#</th>
-                    <th width="12%">Cantidad</th>
                     <th width="40%">Descripción</th>
+                    <th width="12%">Cantidad</th>
                     <th width="20%">Precio</th>
                     <th width="20%">Total</th>
                 </tr>
@@ -185,6 +181,7 @@
             const data = JSON.parse(dataStr);
             const fmt = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' });
 
+            // Formateadores
             const formatRut = r => {
                 if(!r) return '';
                 let v = r.replace(/[^0-9kK]/g,'');
@@ -200,6 +197,7 @@
                 return p;
             };
 
+            // Llenar Datos
             document.getElementById('p-emisor-nombre').textContent = data.emisor.nombre;
             document.getElementById('p-emisor-rut').textContent = formatRut(data.emisor.rut);
             document.getElementById('p-emisor-encargado').textContent = data.emisor.encargado;
@@ -219,25 +217,26 @@
             document.getElementById('p-rec-fono').textContent = formatPhone(data.receptor.telefono);
             document.getElementById('p-rec-email').textContent = data.receptor.email;
 
+            // Tabla (CAMBIO: Nuevo orden de inyección)
             const tbody = document.getElementById('p-tabla-body');
             data.items.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${item.index}</td>
-                    <td>${item.cant}</td>
-                    <td>${item.desc}</td>
-                    <td>${fmt.format(item.precio)}</td>
+                    <td>${item.desc}</td> <td>${item.cant}</td>  <td>${fmt.format(item.precio)}</td>
                     <td>${fmt.format(item.total)}</td>
                 `;
                 tbody.appendChild(tr);
             });
 
+            // Relleno mínimo
             if(data.items.length < 4) {
                 for(let i = 0; i < (4 - data.items.length); i++) {
                     tbody.innerHTML += `<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>`;
                 }
             }
 
+            // Totales
             document.getElementById('p-subtotal').textContent = fmt.format(data.totales.subtotal);
             document.getElementById('p-iva').textContent = fmt.format(data.totales.iva);
             document.getElementById('p-total').textContent = fmt.format(data.totales.total);
