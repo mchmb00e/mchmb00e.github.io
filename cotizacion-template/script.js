@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    console.log("Desarrollado por Miguel Chamorro.\nContacto: miguelchamorro912@gmail.com\nTel: +56 9 3337 2677\n\nVersión: 1.0.0")
+    console.log("Desarrollado por Miguel Chamorro.\nContacto: miguelchamorro912@gmail.com\nTel: +56 9 3337 2677\n\nVersión: 1.1.0")
 
     const tbody = document.getElementById('items-body');
     const btnAdd = document.getElementById('btn-add-item');
+    // Referencia al nuevo checkbox
+    const chkNoIva = document.getElementById('chk-no-iva');
 
     function formatMoney(amount) {
         return '$' + amount.toLocaleString('es-CL');
@@ -21,13 +23,20 @@ document.addEventListener('DOMContentLoaded', function () {
             subtotal += parseMoney(totalInput.value);
         });
 
-        const iva = subtotal * 0.19;
+        // LÓGICA MODIFICADA PARA EL IVA
+        const aplicaIva = !chkNoIva.checked; // Si "No quiero IVA" está marcado, aplicaIva es falso
+        const iva = aplicaIva ? (subtotal * 0.19) : 0;
         const total = subtotal + iva;
 
         document.getElementById('subtotal').value = formatMoney(subtotal);
         document.getElementById('iva').value = formatMoney(Math.round(iva));
         document.getElementById('total-final').value = formatMoney(Math.round(total));
+        
+        // Visualmente tachamos o deshabilitamos el input de IVA si no aplica, para dar feedback
+        document.getElementById('iva').style.textDecoration = aplicaIva ? 'none' : 'line-through';
+        document.getElementById('iva').style.color = aplicaIva ? 'black' : '#999';
     }
+
     function addItem() {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -82,6 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Event listener para recalcular cuando tocas el checkbox
+    chkNoIva.addEventListener('change', calculateTotals);
+
     tbody.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         if (!row) return;
@@ -134,7 +146,6 @@ function action(mode) {
 }
 
 function generarPrevisualizacion() {
-    // 1. Recolectar Items
     const items = [];
     document.querySelectorAll('#items-body tr').forEach((row, index) => {
         const precioRaw = row.querySelector('.input-precio').value;
@@ -149,6 +160,9 @@ function generarPrevisualizacion() {
             total: parseFloat(totalRaw.replace(/\$|\./g, '')) || 0 
         });
     });
+
+    // Verificamos estado del checkbox para pasarlo a la data
+    const noIvaChecked = document.getElementById('chk-no-iva').checked;
 
     const data = {
         emisor: {
@@ -175,11 +189,12 @@ function generarPrevisualizacion() {
         totales: {
             subtotal: parseFloat(document.getElementById('subtotal').value.replace(/\$|\./g, '')) || 0,
             iva: parseFloat(document.getElementById('iva').value.replace(/\$|\./g, '')) || 0,
-            total: parseFloat(document.getElementById('total-final').value.replace(/\$|\./g, '')) || 0
+            total: parseFloat(document.getElementById('total-final').value.replace(/\$|\./g, '')) || 0,
+            // Agregamos esta bandera para saber si mostrar u ocultar la fila en el HTML final
+            mostrarIva: !noIvaChecked 
         }
     };
 
-    // 3. Guardar y Abrir
     localStorage.setItem('cotizacionData', JSON.stringify(data));
     window.open('preview.html', '_blank');
 }

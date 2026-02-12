@@ -157,27 +157,34 @@
             </button>
             
             <div class="row mt-4">
-                <div class="col-7">
-                    <label for="observaciones" class="form-label fw-bold">Observaciones:</label>
-                    <textarea id="observaciones" class="form-control border-black" rows="4" placeholder="Ingrese observaciones aquí..."></textarea>
-                </div>
-                <div class="col-5">
-                    <table class="table table-bordered border-black">
-                        <tr>
-                            <td class="bg-body-secondary fw-bold text-end">Subtotal:</td>
-                            <td><input type="text" id="subtotal" class="form-control border-0 bg-transparent text-end" readonly value="$0"></td>
-                        </tr>
-                        <tr>
-                            <td class="bg-body-secondary fw-bold text-end">IVA (19%):</td>
-                            <td><input type="text" id="iva" class="form-control border-0 bg-transparent text-end" readonly value="$0"></td>
-                        </tr>
-                        <tr>
-                            <td class="bg-body-secondary fw-bold text-end">Total:</td>
-                            <td><input type="text" id="total-final" class="form-control border-0 bg-transparent fw-bold text-end fs-5" readonly value="$0"></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+    <div class="col-7">
+        <div class="form-check mb-2">
+            <input class="form-check-input border-black" type="checkbox" id="chk-no-iva">
+            <label class="form-check-label fw-bold" for="chk-no-iva">
+                No quiero aplicar el IVA
+            </label>
+        </div>
+
+        <label for="observaciones" class="form-label fw-bold">Observaciones:</label>
+        <textarea id="observaciones" class="form-control border-black" rows="4" placeholder="Ingrese observaciones aquí..."></textarea>
+    </div>
+    <div class="col-5">
+        <table class="table table-bordered border-black">
+            <tr>
+                <td class="bg-body-secondary fw-bold text-end">Subtotal:</td>
+                <td><input type="text" id="subtotal" class="form-control border-0 bg-transparent text-end" readonly value="$0"></td>
+            </tr>
+            <tr>
+                <td class="bg-body-secondary fw-bold text-end">IVA (19%):</td>
+                <td><input type="text" id="iva" class="form-control border-0 bg-transparent text-end" readonly value="$0"></td>
+            </tr>
+            <tr>
+                <td class="bg-body-secondary fw-bold text-end">Total:</td>
+                <td><input type="text" id="total-final" class="form-control border-0 bg-transparent fw-bold text-end fs-5" readonly value="$0"></td>
+            </tr>
+        </table>
+    </div>
+</div>
             
             <hr class="border border-2 border-black">
         </div>

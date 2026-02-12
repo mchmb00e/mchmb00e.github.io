@@ -161,11 +161,10 @@
         </table>
 
         <div class="totals-section">
-            <div class="total-row"><span class="label">Subtotal:</span> <span id="p-subtotal"></span></div>
-            <div class="total-row"><span class="label">IVA (19%):</span> <span id="p-iva"></span></div>
-            <div class="total-row total-final"><span class="label">Total:</span> <span id="p-total"></span></div>
-        </div>
-
+    <div class="total-row"><span class="label">Subtotal:</span> <span id="p-subtotal"></span></div>
+    <div class="total-row" id="row-iva"><span class="label">IVA (19%):</span> <span id="p-iva"></span></div>
+    <div class="total-row total-final"><span class="label">Total:</span> <span id="p-total"></span></div>
+</div>
         <div class="obs-section">
             <span class="label">Observaciones:</span> <span id="p-obs"></span>
         </div>
@@ -228,17 +227,22 @@
                 `;
                 tbody.appendChild(tr);
             });
-
-            // Relleno mínimo
-            if(data.items.length < 4) {
-                for(let i = 0; i < (4 - data.items.length); i++) {
-                    tbody.innerHTML += `<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>`;
-                }
-            }
+// ... (código anterior) ...
 
             // Totales
             document.getElementById('p-subtotal').textContent = fmt.format(data.totales.subtotal);
-            document.getElementById('p-iva').textContent = fmt.format(data.totales.iva);
+            
+            // LÓGICA DE VISIBILIDAD DEL IVA
+            const rowIva = document.getElementById('row-iva');
+            if (data.totales.mostrarIva) {
+                // Si hay que mostrarlo, llenamos el dato y nos aseguramos que se vea
+                rowIva.style.display = 'flex'; // o 'block'/'flex' según tu CSS original (flex en tu caso)
+                document.getElementById('p-iva').textContent = fmt.format(data.totales.iva);
+            } else {
+                // Si NO hay que mostrarlo, lo ocultamos
+                rowIva.style.display = 'none';
+            }
+
             document.getElementById('p-total').textContent = fmt.format(data.totales.total);
             document.getElementById('p-obs').textContent = data.observaciones;
 
