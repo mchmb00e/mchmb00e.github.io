@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     console.log("Desarrollado por Miguel Chamorro.\nContacto: miguelchamorro912@gmail.com\nTel: +56 9 3337 2677\n\nVersión: 1.1.0")
-
+    window.location.href = "https://mchmb00e.github.io/generador-cotizaciones/"
     const tbody = document.getElementById('items-body');
     const btnAdd = document.getElementById('btn-add-item');
     // Referencia al nuevo checkbox
